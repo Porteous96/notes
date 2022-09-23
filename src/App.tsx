@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useState } from 'react';
 import Sidebar from './components/Sidebar';
-import Editor from './components/Editor';
+import Editor from './components/editor/Editor';
 import Split from 'react-split';
 import {nanoid} from 'nanoid';
 import { Note } from './types/Note';

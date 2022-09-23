@@ -14,7 +14,6 @@ interface SidebarProps {
 
 const Sidebar = ({notes, currentNote, setCurrentNoteId, newNote, deleteNote}: SidebarProps) => {
  
- 
   const noteElements = notes.map((note) => (
     <div key={note.id}>
       <div
