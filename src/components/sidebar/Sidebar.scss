@@ -1,0 +1,44 @@
+// TODO update this to use nesting
+
+.title {
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-snippet {
+  padding-inline: 10px;
+  line-height: 1.2rem;
+  color: #4A4E74;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-note {
+  background-color: #4A4E74;
+}
+
+.selected-note .text-snippet {
+  color: white;
+  font-weight: 700;
+}
+
+.delete-btn {
+  display: none;
+  background: none;
+  border: none;
+}
+
+.title:hover > .delete-btn {
+  display: block;
+  cursor: pointer;
+}
+
+.trash-icon {
+  font-size: 20px;
+}
+

@@ -1,19 +1,20 @@
+import Typography from '@material-ui/core/Typography';
 import { MouseEvent } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
-import { Note } from '../types/Note';
+import { Note } from '../../types/Note';
+
+import './Sidebar.scss';
 
 interface SidebarProps {
   notes: Note[];
   currentNote: Note;
   setCurrentNoteId: React.Dispatch<React.SetStateAction<string>>;
-  newNote: () => void;
   deleteNote: (event: MouseEvent<HTMLButtonElement>, noteId: string) => void
-
 }
 
-const Sidebar = ({notes, currentNote, setCurrentNoteId, newNote, deleteNote}: SidebarProps) => {
- 
+const Sidebar = ({ notes, currentNote, setCurrentNoteId, deleteNote }: SidebarProps) => {
+  
   const noteElements = notes.map((note) => (
     <div key={note.id}>
       <div
@@ -22,7 +23,7 @@ const Sidebar = ({notes, currentNote, setCurrentNoteId, newNote, deleteNote}: Si
         }`}
         onClick={() => setCurrentNoteId(note.id)}
       >
-        <h4 className='text-snippet'>{note.body.split('\n', 1)[0]}</h4>
+        <Typography className='text-snippet' variant='h6'>{note.body.split('\n', 1)[0]}</Typography> {/* Replacing this with typography has broken styling */}
         <button className='delete-btn' onClick={(event) => deleteNote(event, note.id)}>
           <FaRegTrashAlt className='trash-icon'/>
         </button>
@@ -32,10 +33,6 @@ const Sidebar = ({notes, currentNote, setCurrentNoteId, newNote, deleteNote}: Si
 
   return (
     <section className='pane sidebar'>
-      <div className='sidebar--header'>
-        <h3>Notes</h3>
-        <button className='new-note' onClick={newNote}>+</button>
-      </div>
       {noteElements}
     </section>
   );

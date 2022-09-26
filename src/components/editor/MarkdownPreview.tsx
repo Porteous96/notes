@@ -4,7 +4,7 @@ interface MarkdownPreviewProps {
   markdown: string;
 }
 
-const MarkdownPreview = ({markdown}: MarkdownPreviewProps) => {
+const MarkdownPreview = ({ markdown }: MarkdownPreviewProps) => {
 
   const generateMarkdownPreview = (markdown: string) => <ReactMarkdown>{markdown}</ReactMarkdown>;
 

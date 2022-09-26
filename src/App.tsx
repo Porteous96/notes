@@ -1,11 +1,14 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import Sidebar from './components/Sidebar';
-import Editor from './components/editor/Editor';
 import Split from 'react-split';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
+
+import Sidebar from './components/sidebar/Sidebar';
+import Editor from './components/editor/Editor';
 import { Note } from './types/Note';
 
-import './App.css';
+import './App.scss';
+import Header from './components/header/Header';
+
 
 const App = () => {
 
@@ -18,6 +21,8 @@ const App = () => {
   const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ''
   );
+
+  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     localStorage.setItem('notes', JSON.stringify(notes));
@@ -47,7 +52,6 @@ const App = () => {
 
       return updatedNotes;
     });
-
   };
 
   const deleteNote = (event: MouseEvent<HTMLButtonElement>, noteId: string) => {
@@ -62,17 +66,9 @@ const App = () => {
     }) || notes[0];
   };
 
-  const noNotesElement = (
-    <div className='no-notes'>
-      <h1>You have no notes</h1>
-      <button
-        className='first-note'
-        onClick={createNewNote}
-      >
-        Create one now
-      </button>
-    </div>
-  );
+  const handleModeChange = () => {
+    setIsEditing(prevIsEditing => !prevIsEditing);
+  };
 
   const splitLayoutElement = (
     <Split
@@ -84,7 +80,6 @@ const App = () => {
         notes={notes}
         currentNote={findCurrentNote()}
         setCurrentNoteId={setCurrentNoteId}
-        newNote={createNewNote}
         deleteNote={deleteNote}
       />
       {
@@ -92,6 +87,7 @@ const App = () => {
           notes.length > 0 &&
           <Editor
             currentNote={findCurrentNote()}
+            isEditing={isEditing}
             updateNote={updateNote}
           />
       }
@@ -100,8 +96,13 @@ const App = () => {
 
   return (
     <main>
+      <Header
+        createNewNote={createNewNote}
+        handleModeChange={(handleModeChange)}
+        isEditing={isEditing}
+      />
       {
-        notes.length > 0 ? splitLayoutElement : noNotesElement
+        splitLayoutElement
       }
     </main>
   );

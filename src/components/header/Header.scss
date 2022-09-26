@@ -1,0 +1,30 @@
+main {
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 1.5% 0;
+    background-color: rgb(179, 182, 205);
+
+    .logo {
+      padding-left: 10px;
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+    }
+
+    .controls {
+      display: flex;
+      margin-left: 30%;
+      margin-right: 10%;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    & * {
+      font-size: 1.5rem;
+    }
+  }
+}
