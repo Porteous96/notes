@@ -49,6 +49,10 @@
           {
             "skipBlankLines": true
           }
+        ],
+        "object-curly-spacing": [
+          "error",
+          "always"
         ]
     }
 }
